@@ -75,10 +75,10 @@ class CatalogController extends \yii\web\Controller
 
 
     /**
-     * Returns IDs of category and all its sub-categories
+     * Возвращает ID категорий и всех её подкатегорий
      *
-     * @param Category[] $categories all categories
-     * @param int $categoryId id of category to start search with
+     * @param Category[] $categories все категории
+     * @param int $categoryId ID категорий, с которой следует начать поиск
      * @param array $categoryIds
      * @return array $categoryIds
      */

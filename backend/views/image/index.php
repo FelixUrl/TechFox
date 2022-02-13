@@ -19,7 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if ($searchModel->product_id) : ?>
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
-            <?= $form->field($uploadForm, 'files[]')->fileInput(['multiple' => true]) ?>
+        <?= /** @var TYPE_NAME $uploadForm */
+        $form->field($uploadForm, 'files[]')->fileInput(['multiple' => true]) ?>
 
             <button class="btn btn-primary">Upload</button>
         <?php ActiveForm::end() ?>

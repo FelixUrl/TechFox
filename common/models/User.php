@@ -1,4 +1,5 @@
 <?php
+
 namespace common\models;
 
 use Yii;
@@ -19,7 +20,7 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
- * @property string $password write-only password
+ * @property string $password пароль только для записи
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -72,7 +73,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by username
+     * Находит пользователя по имени пользователя
      *
      * @param string $username
      * @return static|null
@@ -83,7 +84,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds user by password reset token
+     * Находит пользователя по маркеру сброса пароля
      *
      * @param string $token password reset token
      * @return static|null
@@ -101,9 +102,9 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Finds out if password reset token is valid
+     * Выясняет, действителен ли токен сброса пароля
      *
-     * @param string $token password reset token
+     * @param string $token токен для сброса пароля
      * @return boolean
      */
     public static function isPasswordResetTokenValid($token)
@@ -113,7 +114,7 @@ class User extends ActiveRecord implements IdentityInterface
         }
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         $parts = explode('_', $token);
-        $timestamp = (int) end($parts);
+        $timestamp = (int)end($parts);
         return $timestamp + $expire >= time();
     }
 
@@ -142,10 +143,10 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Validates password
+     * Проверяет пароль на валидность
      *
-     * @param string $password password to validate
-     * @return boolean if password provided is valid for current user
+     * @param string $password пароль для валидации
+     * @return boolean если предоставленный пароль действителен для текущего пользователя
      */
     public function validatePassword($password)
     {
@@ -153,7 +154,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates password hash from password and sets it to the model
+     * Генерирует хэш пароля из пароля и устанавливает его в модель
      *
      * @param string $password
      */
@@ -163,7 +164,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates "remember me" authentication key
+     * Генерирует ключ аутентификации "запомни меня"
      */
     public function generateAuthKey()
     {
@@ -171,7 +172,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Generates new password reset token
+     * Генерирует новый токен сброса пароля
      */
     public function generatePasswordResetToken()
     {
@@ -179,7 +180,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Removes password reset token
+     * Удаляет маркер сброса пароля
      */
     public function removePasswordResetToken()
     {

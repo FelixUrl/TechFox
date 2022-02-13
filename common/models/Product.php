@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 use yz\shoppingcart\CartPositionInterface;
 use yz\shoppingcart\CartPositionTrait;
 
@@ -21,7 +23,7 @@ use yz\shoppingcart\CartPositionTrait;
  * @property OrderItem[] $orderItems
  * @property Category $category
  */
-class Product extends \yii\db\ActiveRecord implements CartPositionInterface
+class Product extends ActiveRecord implements CartPositionInterface
 {
     use CartPositionTrait;
 
@@ -64,16 +66,16 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'slug' => 'Slug',
-            'description' => 'Description',
+            'title' => 'Название',
+            'slug' => 'Кол-во',
+            'description' => 'Описание',
             'category_id' => 'Category ID',
-            'price' => 'Price',
+            'price' => 'Цена',
         ];
     }
 
     /**
-     * @return Image[]
+     * @return ActiveQuery
      */
     public function getImages()
     {
@@ -81,7 +83,7 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getOrderItems()
     {
@@ -89,7 +91,7 @@ class Product extends \yii\db\ActiveRecord implements CartPositionInterface
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getCategory()
     {

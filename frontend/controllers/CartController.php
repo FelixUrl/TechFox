@@ -27,8 +27,8 @@ class CartController extends \yii\web\Controller
         $total = $cart->getCost();
 
         return $this->render('list', [
-           'products' => $products,
-           'total' => $total,
+            'products' => $products,
+            'total' => $total,
         ]);
     }
 
@@ -65,7 +65,7 @@ class CartController extends \yii\web\Controller
             $transaction = $order->getDb()->beginTransaction();
             $order->save(false);
 
-            foreach($products as $product) {
+            foreach ($products as $product) {
                 $orderItem = new OrderItem();
                 $orderItem->order_id = $order->id;
                 $orderItem->title = $product->title;
@@ -74,7 +74,8 @@ class CartController extends \yii\web\Controller
                 $orderItem->quantity = $product->getQuantity();
                 if (!$orderItem->save(false)) {
                     $transaction->rollBack();
-                    \Yii::$app->session->addFlash('error', 'Cannot place your order. Please contact us.');
+                    \Yii::$app->session->addFlash('error',
+                        'Вы не можете разместить свой заказ. Пожалуйста, свяжитесь с нами.');
                     return $this->redirect('catalog/list');
                 }
             }
@@ -82,7 +83,7 @@ class CartController extends \yii\web\Controller
             $transaction->commit();
             \Yii::$app->cart->removeAll();
 
-            \Yii::$app->session->addFlash('success', 'Thanks for your order. We\'ll contact you soon.');
+            \Yii::$app->session->addFlash('success', 'Спасибо за ваш заказ.');
             $order->sendEmail();
 
             return $this->redirect('catalog/list');

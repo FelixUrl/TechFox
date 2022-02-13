@@ -3,17 +3,19 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 
 /**
- * This is the model class for table "image".
+ * Это класс модели для таблицы "image".
  *
  * @property integer $id
  * @property integer $product_id
  *
  * @property Product $product
  */
-class Image extends \yii\db\ActiveRecord
+class Image extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -35,7 +37,7 @@ class Image extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getProduct()
     {
@@ -43,7 +45,7 @@ class Image extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return string image hash
+     * @return string хэш изображения
      */
     protected function getHash()
     {
@@ -51,7 +53,7 @@ class Image extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return string path to image file
+     * @return string путь к файлу изображения
      */
     public function getPath()
     {
@@ -59,7 +61,7 @@ class Image extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return string URL of the image
+     * @return string URL-адрес изображения
      */
     public function getUrl()
     {

@@ -4,9 +4,11 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "order".
+ * Это класс модели для таблицы "order".
  *
  * @property integer $id
  * @property integer $created_at
@@ -19,11 +21,11 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property OrderItem[] $orderItems
  */
-class Order extends \yii\db\ActiveRecord
+class Order extends ActiveRecord
 {
-    const STATUS_NEW = 'New';
-    const STATUS_IN_PROGRESS = 'In progress';
-    const STATUS_DONE = 'Done';
+    const STATUS_NEW = 'Новый';
+    const STATUS_IN_PROGRESS = 'В процессе';
+    const STATUS_DONE = 'Выполнен';
 
     public function behaviors()
     {
@@ -61,18 +63,18 @@ class Order extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'phone' => 'Phone',
-            'address' => 'Address',
+            'created_at' => 'Дата создания',
+            'updated_at' => 'Дата обновления',
+            'phone' => 'Телефон',
+            'address' => 'Адрес',
             'email' => 'Email',
-            'notes' => 'Notes',
-            'status' => 'Status',
+            'notes' => 'Заметки',
+            'status' => 'Статус',
         ];
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getOrderItems()
     {
@@ -94,9 +96,9 @@ class Order extends \yii\db\ActiveRecord
     public static function getStatuses()
     {
         return [
-            self::STATUS_DONE => 'Done',
-            self::STATUS_IN_PROGRESS => 'In progress',
-            self::STATUS_NEW => 'New',
+            self::STATUS_DONE => 'Новый',
+            self::STATUS_IN_PROGRESS => 'В процессе',
+            self::STATUS_NEW => 'Выполнен',
         ];
     }
 
@@ -105,7 +107,7 @@ class Order extends \yii\db\ActiveRecord
         return Yii::$app->mailer->compose('order', ['order' => $this])
             ->setTo(Yii::$app->params['adminEmail'])
             ->setFrom(Yii::$app->params['adminEmail'])
-            ->setSubject('New order #' . $this->id)
+            ->setSubject('Новый заказ #' . $this->id)
             ->send();
     }
 }

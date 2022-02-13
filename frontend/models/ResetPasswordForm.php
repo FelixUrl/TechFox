@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\models;
 
 use common\models\User;
@@ -7,32 +8,32 @@ use yii\base\Model;
 use Yii;
 
 /**
- * Password reset form
+ * Форма сброса пароля
  */
 class ResetPasswordForm extends Model
 {
     public $password;
 
     /**
-     * @var \common\models\User
+     * @var User
      */
     private $_user;
 
     /**
-     * Creates a form model given a token.
+     * Создает форму для сброса пароля по токену.
      *
-     * @param  string                          $token
-     * @param  array                           $config name-value pairs that will be used to initialize the object properties
-     * @throws \yii\base\InvalidParamException if token is empty or not valid
+     * @param string $token
+     * @param array $config пары имя-значение, которые будут использоваться для инициализации свойств объекта
+     * @throws InvalidParamException если токен пустой или не действителен
      */
     public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
-            throw new InvalidParamException('Password reset token cannot be blank.');
+            throw new InvalidParamException('Токен сброса пароля не может быть пустым.');
         }
         $this->_user = User::findByPasswordResetToken($token);
         if (!$this->_user) {
-            throw new InvalidParamException('Wrong password reset token.');
+            throw new InvalidParamException('Неверный токен сброса пароля.');
         }
         parent::__construct($config);
     }
@@ -49,9 +50,9 @@ class ResetPasswordForm extends Model
     }
 
     /**
-     * Resets password.
+     * Сброс пароля.
      *
-     * @return boolean if password was reset.
+     * @return boolean если пароль был  сброшен.
      */
     public function resetPassword()
     {

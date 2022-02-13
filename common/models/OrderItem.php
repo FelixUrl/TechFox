@@ -3,9 +3,11 @@
 namespace common\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "order_item".
+ * Это класс модели для таблицы "order_item".
  *
  * @property integer $id
  * @property integer $order_id
@@ -17,7 +19,7 @@ use Yii;
  * @property Product $product
  * @property Order $order
  */
-class OrderItem extends \yii\db\ActiveRecord
+class OrderItem extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -53,7 +55,7 @@ class OrderItem extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getProduct()
     {
@@ -61,7 +63,7 @@ class OrderItem extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getOrder()
     {

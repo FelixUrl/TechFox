@@ -4,9 +4,11 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "category".
+ * Это класс модели для таблицы "category".
  *
  * @property integer $id
  * @property integer $parent_id
@@ -17,7 +19,7 @@ use yii\behaviors\SluggableBehavior;
  * @property Category[] $categories
  * @property Product[] $products
  */
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     public function behaviors()
     {
@@ -57,14 +59,14 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'parent_id' => 'Parent',
-            'title' => 'Title',
-            'slug' => 'Slug',
+            'parent_id' => 'Родитель',
+            'title' => 'Название',
+            'slug' => 'Кол-во',
         ];
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getParent()
     {
@@ -72,7 +74,7 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getCategories()
     {
@@ -80,7 +82,7 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getProducts()
     {

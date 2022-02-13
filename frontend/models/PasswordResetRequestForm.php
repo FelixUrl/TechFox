@@ -5,7 +5,7 @@ use common\models\User;
 use yii\base\Model;
 
 /**
- * Password reset request form
+ * Форма запроса на сброс пароля
  */
 class PasswordResetRequestForm extends Model
 {
@@ -29,9 +29,9 @@ class PasswordResetRequestForm extends Model
     }
 
     /**
-     * Sends an email with a link, for resetting the password.
+     * Отправляет электронное письмо со ссылкой для сброса пароля.
      *
-     * @return boolean whether the email was send
+     * @return boolean было ли отправлено письмо
      */
     public function sendEmail()
     {
@@ -50,7 +50,7 @@ class PasswordResetRequestForm extends Model
                 return \Yii::$app->mailer->compose('passwordResetToken', ['user' => $user])
                     ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
                     ->setTo($this->email)
-                    ->setSubject('Password reset for ' . \Yii::$app->name)
+                    ->setSubject('Пароль  сброшен для ' . \Yii::$app->name)
                     ->send();
             }
         }
