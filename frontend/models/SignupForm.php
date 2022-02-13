@@ -37,9 +37,9 @@ class SignupForm extends Model
     }
 
     /**
-     * Signs user up.
+     * Регистрирует пользователя.
      *
-     * @return User|null the saved model or null if saving fails
+     * @return User|null сохраненная модель или null, если сохранение не удалось
      */
     public function signup()
     {
